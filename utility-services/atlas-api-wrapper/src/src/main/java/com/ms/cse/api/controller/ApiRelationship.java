@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ms.cse.api.exception.CustomAllException;
 import com.ms.cse.api.service.ApiService;
 
 @RestController
@@ -39,13 +40,13 @@ public class ApiRelationship {
 	}
 	
 	@PutMapping("/api/relationship")
-	public String relationshipBulkPost(@RequestBody String ipJSON) {
+	public String relationshipBulkPost(@RequestBody String ipJSON) throws IOException, Exception {
 		try {
 			return apiService.callApi("PUT", ipJSON, "v2/relationship");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
+		}	catch (CustomAllException e) {
 			e.printStackTrace();
-			return e.getMessage();
+			 throw new CustomAllException(e.getLocalizedMessage());
+
 		}
 		
 	}
@@ -53,25 +54,25 @@ public class ApiRelationship {
 	
 	
 	@GetMapping("/api/relationship/guid/{guid}")
-	public String relationshipGUIDGet(@PathVariable String guid) {
+	public String relationshipGUIDGet(@PathVariable String guid) throws IOException, CustomAllException {
 		try {
 			return apiService.callApi("GET", "/v2/relationship/guid/"+guid);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
+		}	catch (CustomAllException e) {
 			e.printStackTrace();
-			return e.getMessage();
+			 throw new CustomAllException(e.getLocalizedMessage());
+
 		}
 		
 	}
 	
 	@DeleteMapping("/api/relationship/guid/{guid}")
-	public String relationshipGUIDDelete(@PathVariable String guid) {
+	public String relationshipGUIDDelete(@PathVariable String guid) throws IOException, CustomAllException {
 		try {
 			return apiService.callApi("DELETE", "/v2/relationship/guid/"+guid);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
+		}	catch (CustomAllException e) {
 			e.printStackTrace();
-			return e.getMessage();
+			 throw new CustomAllException(e.getLocalizedMessage());
+
 		}
 		
 	}

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ms.cse.api.exception.CustomAllException;
 import com.ms.cse.api.service.ApiService;
 
 @RestController
@@ -29,53 +30,50 @@ public class ApiTypeDefs {
 	
 	
 	@GetMapping("/api/typedefs")
-	public String typedefsGet(@RequestBody String ipJSON) {
+	public String typedefsGet(@RequestBody String ipJSON) throws IOException, Exception {
 		try {
 			return apiService.callApi("GET", ipJSON, "v2/types/typedefs");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			System.out.println("In Exception "+e.fillInStackTrace());
+		}	catch (CustomAllException e) {
 			e.printStackTrace();
-			return e.getMessage();
+			 throw new CustomAllException(e.getLocalizedMessage());
+
 		}
 		
 	}
 	
 	@DeleteMapping("/api/typedefs")
-	public String typedefsDelete(@RequestBody String ipJSON) {
+	public String typedefsDelete(@RequestBody String ipJSON) throws IOException, Exception {
 		try {
 			return apiService.callApi("DELETE", ipJSON, "v2/types/typedefs");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
+		}	catch (CustomAllException e) {
 			e.printStackTrace();
-			System.out.println("In Exception "+e.fillInStackTrace());
-			return e.getMessage();
+			 throw new CustomAllException(e.getLocalizedMessage());
+
 		}
 		
 	}
 	
 	@PostMapping("/api/typedefs")
-	public String typedefsPost(@RequestBody String ipJSON) {
+	public String typedefsPost(@RequestBody String ipJSON) throws IOException, Exception {
 		try {
 			return apiService.callApi("POST", ipJSON, "v2/types/typedefs");
 			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
+		}	catch (CustomAllException e) {
 			e.printStackTrace();
-			System.out.println("In Exception "+e.fillInStackTrace());
-			return e.getMessage();
+			 throw new CustomAllException(e.getLocalizedMessage());
+
 		}
 		
 	}
 	
 	@PutMapping("/api/typedefs")
-	public String typedefsPut(@RequestBody String ipJSON) {
+	public String typedefsPut(@RequestBody String ipJSON) throws IOException, Exception {
 		try {
 			return apiService.callApi("PUT", ipJSON, "v2/types/typedefs");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
+		}	catch (CustomAllException e) {
 			e.printStackTrace();
-			return e.getMessage();
+			 throw new CustomAllException(e.getLocalizedMessage());
+
 		}
 		
 	}
