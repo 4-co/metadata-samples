@@ -11,5 +11,8 @@ public interface ApiService {
 
 	String callApi(String method, String aPIUrl) throws IOException, CustomAllException;
 
+	
+	String callGuidApi(String method, String aPIUrl) throws IOException, CustomAllException;
+
 }
 

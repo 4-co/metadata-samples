@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import com.microsoft.azure.functions.ExecutionContext;
 import com.ms.cse.harvestor.dwh.conf.Constants;
 import com.ms.cse.harvestor.dwh.conf.DBConnection;
 import com.ms.cse.harvestor.dwh.model.Column;
@@ -49,7 +50,7 @@ public class MasterMetadataDetails {
 	public static int tableGUID=-40000;
 	public static int columnsGUID=-50000;
 	
-	public void getDetails() throws IOException, Exception
+	public void getDetails(ExecutionContext context) throws IOException, Exception
 	{
 		
 		for(int i=0;i<Constants.SQLSERVERNAME.length;i++)
@@ -57,15 +58,20 @@ public class MasterMetadataDetails {
 			MetadataDetails metadataDetails = new MetadataDetails();
 			metadataDetails.getDetails(Constants.SQLSERVERNAME[i], Constants.SQLDBUSERNAME[i], Constants.SQLDBPASSWORD[i],Constants.SQLDBRESOURCEGROUP[i]);
 		}
+		context.getLogger().info("Got all Information about entities from SQL server");
+		
 		//Call Qns Service to get Qualified Name and GUID
 		QnsServicesController qnsServicesController= new QnsServicesController();
 		qnsServicesController.setGuids();
+		context.getLogger().info("Got all Information about entities from QNS Service");
 		
 		JSONGeneratorServicesController jSONGeneratorServicesController= new JSONGeneratorServicesController();
 		String atlasAPIInput=jSONGeneratorServicesController.getFinalJSON();
+		context.getLogger().info("Got all Information about JSON from JSON Generator Service");
 		
 		AtlasEntityBulkServicesController atlasEntityBulkServicesController= new AtlasEntityBulkServicesController();
 		atlasEntityBulkServicesController.processAllEntities(atlasAPIInput);;
+		context.getLogger().info("Processed all with Atlas Wrapper Service");
 	
 	}
 	private void listObjects()

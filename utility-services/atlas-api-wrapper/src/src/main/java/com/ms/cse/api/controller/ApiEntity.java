@@ -107,7 +107,8 @@ public class ApiEntity {
 	@GetMapping("/api/entity/guid/{guid}")
 	public String entityGUIDGet(@PathVariable String guid) throws IOException, Exception {
 		try {
-			return apiService.callApi("GET", "/v2/entity/guid/"+guid);
+			System.out.println("Inside entityGUIDGet - >"+guid);
+			return apiService.callGuidApi("GET", "v2/entity/guid/"+guid);
 		}	catch (CustomAllException e) {
 			e.printStackTrace();
 			 throw new CustomAllException(e.getLocalizedMessage());
@@ -119,7 +120,7 @@ public class ApiEntity {
 	@DeleteMapping("/api/entity/guid/{guid}")
 	public String entityGUIDDelete(@PathVariable String guid) throws IOException, Exception {
 		try {
-			return apiService.callApi("DELETE", "/v2/entity/guid/"+guid);
+			return apiService.callGuidApi("DELETE", "v2/entity/guid/"+guid);
 		}	catch (CustomAllException e) {
 			e.printStackTrace();
 			 throw new CustomAllException(e.getLocalizedMessage());
@@ -131,7 +132,7 @@ public class ApiEntity {
 	@PutMapping("/api/entity/guid/{guid}")
 	public String entityGUIDPut(@PathVariable String guid) throws IOException, Exception {
 		try {
-			return apiService.callApi("PUT", "/v2/entity/guid/"+guid);
+			return apiService.callGuidApi("PUT", "v2/entity/guid/"+guid);
 		}	catch (CustomAllException e) {
 			e.printStackTrace();
 			 throw new CustomAllException(e.getLocalizedMessage());

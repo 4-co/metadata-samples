@@ -181,6 +181,73 @@ public class ApiServiceImpl implements ApiService {
 		}
 
 	}
+	
+	
+
+	@Override
+	public String callGuidApi(String method, String aPIUrl) throws IOException, CustomAllException {
+
+		String atlasServerIP = Constants.ATLASSERVERIP;
+		String atlasServerPort = Constants.ATLASSERVERPORT;
+		String userName = Constants.USERNAME;
+		String password = Constants.PASSWORD;
+
+		System.out.println("http://" + atlasServerIP + ":" + atlasServerPort + "/api/atlas/" + aPIUrl);
+		URL url = new URL("http://" + atlasServerIP + ":" + atlasServerPort + "/api/atlas/" + aPIUrl);
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		conn.setDoOutput(true);
+		conn.setRequestMethod(method);
+		conn.setRequestProperty("Content-Type", "application/json");
+
+		BASE64Encoder enc = new sun.misc.BASE64Encoder();
+		String userpassword = userName + ":" + password;
+		String encodedAuthorization = enc.encode(userpassword.getBytes()).replaceAll("(\\r|\\n)", "");;
+		conn.setRequestProperty("Authorization", "Basic " + encodedAuthorization);
+		
+		BufferedReader br = null ;
+		 String output = "";
+			String result="";
+		if (200 <= conn.getResponseCode() && conn.getResponseCode() <= 299) {
+		    br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		   
+			System.out.println("Output from Server .... \n");
+			
+				while ((output = br.readLine()) != null) {
+					System.out.println("output String : " +output);
+					result+=output;
+				}
+			System.out.println("In 200 sequence :Result is :"+result);
+			conn.disconnect();
+			return result;
+			// throw new CustomAllException(result);
+		} else {
+			System.out.println("Inside Else");
+			try {
+			 br = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+			}
+			catch(Exception e)
+			{
+				 throw new CustomAllException(e.getMessage());
+			}
+			//String output = null;
+			//String result="";
+			System.out.println("Inside Else");
+			while ((output = br.readLine()) != null) {
+				System.out.println("output String : " +output);
+				result+=output;
+			}
+			System.out.println(result);
+			System.out.println(result);
+		    br = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+		    conn.disconnect();
+		    System.out.println("In Custom exception other then 200 sequence :Result is :"+result);
+		    //CustomAllException customAllException= new CustomAllException(result);
+		   throw new CustomAllException(result);
+		}
+
+	}
+	
+	
 	private  String encodeValue(String value) {
         try {
             return URLEncoder.encode(value, StandardCharsets.UTF_8.toString());

@@ -10,12 +10,6 @@ import java.sql.SQLException;
 public class DBConnection {
 
 	
-//	    private static String DB_URL = "jdbc:sqlserver://gbssqlserver.database.windows.net:1433;database=gbssqldw;";
-//		
-//private static String DB_USER = "sqldwadmin";
-//private static String DB_PASSWORD = "Password@1234";
-
-    
     
     public static Connection getConnection(String sqlServerUri, String sqlServerUserName,String sqlServerPassword) throws SQLException {
     	DriverManager.registerDriver(new com.microsoft.sqlserver.jdbc.SQLServerDriver());

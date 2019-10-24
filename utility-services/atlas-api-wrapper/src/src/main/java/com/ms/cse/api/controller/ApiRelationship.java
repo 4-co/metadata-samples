@@ -56,7 +56,7 @@ public class ApiRelationship {
 	@GetMapping("/api/relationship/guid/{guid}")
 	public String relationshipGUIDGet(@PathVariable String guid) throws IOException, CustomAllException {
 		try {
-			return apiService.callApi("GET", "/v2/relationship/guid/"+guid);
+			return apiService.callGuidApi("GET", "v2/relationship/guid/"+guid);
 		}	catch (CustomAllException e) {
 			e.printStackTrace();
 			 throw new CustomAllException(e.getLocalizedMessage());
@@ -68,7 +68,7 @@ public class ApiRelationship {
 	@DeleteMapping("/api/relationship/guid/{guid}")
 	public String relationshipGUIDDelete(@PathVariable String guid) throws IOException, CustomAllException {
 		try {
-			return apiService.callApi("DELETE", "/v2/relationship/guid/"+guid);
+			return apiService.callGuidApi("DELETE", "v2/relationship/guid/"+guid);
 		}	catch (CustomAllException e) {
 			e.printStackTrace();
 			 throw new CustomAllException(e.getLocalizedMessage());
