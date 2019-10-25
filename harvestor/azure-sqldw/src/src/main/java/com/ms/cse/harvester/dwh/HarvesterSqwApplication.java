@@ -1,4 +1,4 @@
-package com.ms.cse.harvestor.dwh;
+package com.ms.cse.harvester.dwh;
 
 import java.util.HashMap;
 
@@ -7,7 +7,7 @@ import com.ms.cse.harvestor.dwh.conf.Configurations;
 import com.ms.cse.harvestor.dwh.controller.MasterMetadataDetails;
 import com.ms.cse.harvestor.dwh.model.DatabaseServer;
 
-public class HarvestorSqwApplication {
+public class HarvesterSqwApplication {
 
 	static {
 		try {

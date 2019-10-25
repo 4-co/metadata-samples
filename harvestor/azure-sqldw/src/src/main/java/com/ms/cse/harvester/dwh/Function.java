@@ -1,4 +1,4 @@
-package com.ms.cse.harvestor.dwh;
+package com.ms.cse.harvester.dwh;
 
 import java.util.*;
 import com.microsoft.azure.functions.annotation.*;
@@ -17,13 +17,13 @@ public class Function {
      */
 	@FunctionName("harvestor-dwh")
 	public void keepAlive(
-	  @TimerTrigger(name = "harvestorDwhTrigger", schedule = "0 */5 * * * *") String timerInfo,
+	  @TimerTrigger(name = "harvesterDwhTrigger", schedule = "0 */5 * * * *") String timerInfo,
 	      ExecutionContext context
 	 ) {
-        context.getLogger().info("Inside Java Timer trigger processing harvestor sql request.");
+        context.getLogger().info("Inside Java Timer trigger processing harvester sql request.");
         try {
-			HarvestorSqwApplication.run(context);
-			context.getLogger().info("*********End of HarvestorSqwApplication************");
+			HarvesterSqwApplication.run(context);
+			context.getLogger().info("*********End of HarvesterSqwApplication************");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

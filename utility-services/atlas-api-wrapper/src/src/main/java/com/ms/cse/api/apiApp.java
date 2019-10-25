@@ -16,7 +16,7 @@ public class apiApp {
 
 	public static void main(String[] args) {
 		Configuration config = new Configuration();
-		System.out.println("Reenu App Started");
+		System.out.println("Api Warpper App Started");
 		System.out.println(Constants.ATLASSERVERIP);
 		
 		SpringApplication.run(apiApp.class, args);
