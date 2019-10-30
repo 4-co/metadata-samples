@@ -2,9 +2,9 @@ from azure.storage.blob import BlockBlobService
 
 #################### Insert Information ######################
 
-ACCOUNT_NAME = "storage8e0c3b4b"
-ACCOUNT_KEY = "iulF8EzP5hTQAqG4IuuByzUCSKKeajmwfC6i4PveCLunTsRZzZ84LiRisOcQaCejdb9cQ8AjuF2s2Zs6/kOssg=="
-CONTAINER_NAME = "kiril-wgbs-test"
+ACCOUNT_NAME = "<Insert Storage Account Name>"
+ACCOUNT_KEY = "<Insert ADLS Primary Access Key>"
+CONTAINER_NAME = "<Insert ADLS Container Name>"
 
 ##############################################################
 

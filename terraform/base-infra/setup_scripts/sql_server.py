@@ -2,11 +2,11 @@ import pyodbc
 
 #################### Insert Information ######################
 
-SQL_SERVER = 'kiril-wgbs-test-base.database.windows.net'
-SQL_DB_NAME = 'kiril-wgbs-test-base-db'
-SQL_DW_NAME = 'kiril-wgbs-test-base-dw'
-USERNAME = 'custodian'
-PASSWORD = 'cust0d!an'
+SQL_SERVER = '<Insert SQL Server name>.database.windows.net'
+SQL_DB_NAME = '<Insert SQL DB name>'
+SQL_DW_NAME = '<Insert SQL DW name'
+USERNAME = '<Insert SQL Server Username>'
+PASSWORD = '<Insert SQL Server Password>'
 
 ##############################################################
 
