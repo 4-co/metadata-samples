@@ -3,16 +3,16 @@
         {
             "typeName": "azure_datalake_gen2_filesystem",
             "attributes": {
-                "qualifiedName": "${storage}sales",
-                "name": "sales"
+                "qualifiedName": "${storage}${container}",
+                "name": "${container}"
             },
             "guid": -1
         },
         {
             "typeName": "azure_sql_table",
             "attributes": {
-                "qualifiedName": "${database}salesv2",
-                "name": "salesv2",
+                "qualifiedName": "${database}exampletable",
+                "name": "exampletable",
                 "principalId": 0
             },
             "guid": -2

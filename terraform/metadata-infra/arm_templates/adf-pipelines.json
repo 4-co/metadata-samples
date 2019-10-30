@@ -2,7 +2,7 @@
 	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
 	"contentVersion": "1.0.0.0",
 	"parameters": {
-        "adls_name": {
+        "adls_container_name": {
             "type": "string",
             "metadata": "Name of ADLS Blob Container"
         },
@@ -24,6 +24,12 @@
 		"sqldatabase_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'sqldatabase'"
+		}, 
+		"sql_server_name": {
+			"type": "string"
+		},
+		"sql_dw_name": {
+			"type": "string"
 		}
 	},
 	"variables": {
@@ -262,10 +268,10 @@
 								},
 								"SourceDataset": "SampleAdlsSource",
 								"SourceType": "azure_datalake_gen2_resource_set",
-                                "SourceAzureResource": "parameters('adls_properties_url')/parameters('adls_name')/example_sales_folder",
+                                "SourceAzureResource": "[concat(parameters('adls_properties_url'), '/', parameters('adls_container_name'), '/example_sales_folder')]",
 								"DestinationDataset": "salesadls",
 								"DestinationType": "azure_datalake_gen2_filesystem",
-                                "DestinationAzureResource": "parameters('adls_properties_url')/parameters('adls_name')",
+                                "DestinationAzureResource": "[concat(parameters('adls_properties_url'), '/', parameters('adls_container_name'))]",
 								"PipelineName": {
 									"value": "@pipeline().Pipeline",
 									"type": "Expression"
@@ -344,10 +350,10 @@
 								},
 								"SourceDataset": "AzureSqlDWTable1",
 								"SourceType": "azure_sql_table",
-								"SourceAzureResource": "https://parameters('sql_server_name').database.windows.net/parameters('sql_dw_name')/exampletable",
+								"SourceAzureResource": "[concat('https://', parameters('sql_server_name'), '.database.windows.net/', parameters('sql_dw_name'), '/exampletable')]",
 								"DestinationDataset": "salesadls",
 								"DestinationType": "azure_datalake_gen2_filesystem",
-								"DestinationAzureResource": "parameters('adls_properties_url')/parameters('adls_name')",
+								"DestinationAzureResource": "[concat(parameters('adls_properties_url'), '/', parameters('adls_container_name'))]",
 								"PipelineName": {
 									"value": "@pipeline().Pipeline",
 									"type": "Expression"
@@ -427,7 +433,7 @@
 					"location": {
 						"type": "AzureBlobFSLocation",
 						"folderPath": "",
-						"fileSystem": "[parameters('adls_name')]"
+						"fileSystem": "[parameters('adls_container_name')]"
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
@@ -480,7 +486,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileSystem": "[parameters('adls_name')]"
+						"fileSystem": "[parameters('adls_container_name')]"
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",

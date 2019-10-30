@@ -1,8 +1,9 @@
 locals {
   curl_options = "-X POST -s --max-time 1800 --retry-connrefused --retry 100 --retry-delay 30 -H \"Content-Type: application/json\""
   entities_parameters = {
-    database = "https://${data.azurerm_sql_server.base.fqdn}/${var.base_sql_database_name}/"
+    database = "https://${data.azurerm_sql_server.base.fqdn}/${var.base_sql_datawarehouse_name}/"
     storage = "${data.azurerm_storage_account.base.primary_dfs_endpoint}"
+    container = "${var.adls_container_name}"
   }
   rendered_entities = "${templatefile("${path.module}/atlas_configuration/entities.json", "${local.entities_parameters}")}"
   # Remove new lines, extra spaces and replace escape quotes
@@ -50,9 +51,14 @@ resource "azurerm_container_group" "this" {
       command = "curl ${local.curl_options} http://admin:admin@${azurerm_container_group.this.ip_address}:21000/api/atlas/v2/types/typedefs -d @${path.module}/atlas_configuration/typedefs.json"
     }
 
+}
+
+resource "null_resource" "atlas_entities" {
     provisioner "local-exec" {
       command = "curl ${local.curl_options} http://admin:admin@${azurerm_container_group.this.ip_address}:21000/api/atlas/v2/entity/bulk -d \"${local.entities}\""
     }
+
+  depends_on = [azurerm_container_group.this]
 }
 
 # Upload Atlas connection data to the KeyVault
