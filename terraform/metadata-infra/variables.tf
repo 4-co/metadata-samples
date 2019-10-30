@@ -24,6 +24,11 @@ variable "base_sql_database_name" {
   type        = "string"
 }
 
+variable "base_sql_datawarehouse_name" {
+  description = "Name of the base datawarehouse"
+  type        = "string"
+}
+
 variable "databricks_name" {
   description = "Name of databricks cluster"
   type        = "string"
@@ -107,15 +112,7 @@ variable "sql_dw_connection_string" {
  type = "string" 
 }
 
-variable "adls_name" {
- description = "Name of Azure Datalake Storage"
+variable "adls_container_name" {
+ description = "Name of ADLS container"
  type = "string" 
-}
-
-variable "adls_primary_access_key" {
- type = "string" 
-}
-
-variable "adls_properties_url" {
-  type = "string"
 }

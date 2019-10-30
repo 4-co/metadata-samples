@@ -150,6 +150,336 @@
         "Process"
       ],
       "subTypes": []
+    },
+    {
+      "category": "ENTITY",
+      "version": 1,
+      "name": "azure_datalake_gen2_object",
+      "description": "azure_datalake_gen2_object",
+      "typeVersion": "1.0",
+      "attributeDefs": [],
+      "superTypes": []
+    },
+    {
+      "category":"ENTITY",
+      "version":1,
+      "name":"dq_rule",
+      "description":"Data Quality Rule",
+      "attributeDefs":[
+        {
+          "name": "rule_id",
+          "typeName": "string",
+          "isOptional": false,
+          "cardinality": "SINGLE",
+          "valuesMinCount": 1,
+          "valuesMaxCount": 1,
+          "isUnique": true,
+          "isIndexable": false,
+          "includeInNotification": false
+        },
+        {
+          "name": "rule_name",
+          "typeName": "string",
+          "isOptional": false,
+          "cardinality": "SINGLE",
+          "valuesMinCount": 1,
+          "valuesMaxCount": 1,
+          "isUnique": false,
+          "isIndexable": false,
+          "includeInNotification": false
+        },
+        {
+          "name": "last_update_time",
+          "typeName": "date",
+          "isOptional": true,
+          "cardinality": "SINGLE",
+          "valuesMinCount": 1,
+          "valuesMaxCount": 1,
+          "isUnique": false,
+          "isIndexable": false,
+          "includeInNotification": false
+        }
+
+      ],
+      "typeVersion":"1.0",
+      "subTypes":[],
+      "superTypes":[
+        "Referenceable"
+      ]
+    },
+    {
+      "category":"ENTITY",
+      "version":1,
+      "name":"dq_enabled_field",
+      "superTypes":[
+        "Referenceable"
+      ],
+      "attributeDefs":[
+        {
+          "name": "dq_rules",
+          "typeName": "array<dq_rule>",
+          "isOptional": true,
+          "cardinality": "SINGLE",
+          "valuesMinCount": 1,
+          "valuesMaxCount": 1,
+          "isUnique": false,
+          "isIndexable": false,
+          "includeInNotification": false
+        },
+        {
+          "name": "total_rows_passed",
+          "typeName": "biginteger",
+          "isOptional": true,
+          "cardinality": "SINGLE",
+          "valuesMinCount": 1,
+          "valuesMaxCount": 1,
+          "isUnique": false,
+          "isIndexable": false,
+          "includeInNotification": false
+        },
+        {
+          "name": "total_rows_failed",
+          "typeName": "biginteger",
+          "isOptional": true,
+          "cardinality": "SINGLE",
+          "valuesMinCount": 1,
+          "valuesMaxCount": 1,
+          "isUnique": false,
+          "isIndexable": false,
+          "includeInNotification": false
+        },
+        {
+          "name": "last_update_time",
+          "typeName": "date",
+          "isOptional": true,
+          "cardinality": "SINGLE",
+          "valuesMinCount": 1,
+          "valuesMaxCount": 1,
+          "isUnique": false,
+          "isIndexable": false,
+          "includeInNotification": false
+        }
+
+      ]
+    },
+    {
+      "category": "ENTITY",
+      "version": 1,
+      "name": "column",
+      "description": "column",
+      "typeVersion": "1.0",
+      "attributeDefs": [
+        {
+          "name": "type",
+          "typeName": "string",
+          "isOptional": false,
+          "cardinality": "SINGLE",
+          "valuesMinCount": 1,
+          "valuesMaxCount": 1,
+          "isUnique": false,
+          "isIndexable": true,
+          "includeInNotification": false
+        }
+      ],
+      "superTypes": [
+        "DataSet",
+        "dq_enabled_field"
+        
+      ],
+      "subTypes": []
+    },
+    {
+      "category": "ENTITY",
+      "version": 2,
+      "name": "azure_datalake_gen2_path",
+      "description": "azure_datalake_gen2_path",
+      "typeVersion": "1.0",
+      "attributeDefs": [
+        {
+          "name": "path",
+          "typeName": "string",
+          "isOptional": true,
+          "cardinality": "SINGLE",
+          "valuesMinCount": 0,
+          "valuesMaxCount": 1,
+          "isUnique": false,
+          "isIndexable": false,
+          "includeInNotification": false
+        },
+        {
+          "name": "isFile",
+          "typeName": "boolean",
+          "isOptional": true,
+          "cardinality": "SINGLE",
+          "valuesMinCount": 0,
+          "valuesMaxCount": 1,
+          "isUnique": false,
+          "isIndexable": false,
+          "includeInNotification": false
+        },
+        {
+          "name": "size",
+          "typeName": "long",
+          "isOptional": true,
+          "cardinality": "SINGLE",
+          "valuesMinCount": 0,
+          "valuesMaxCount": 1,
+          "isUnique": false,
+          "isIndexable": false,
+          "includeInNotification": false
+        },
+        {
+          "name": "modifiedTime",
+          "typeName": "date",
+          "isOptional": true,
+          "cardinality": "SINGLE",
+          "valuesMinCount": 0,
+          "valuesMaxCount": 1,
+          "isUnique": false,
+          "isIndexable": false,
+          "includeInNotification": false
+        },
+        {
+          "name": "userProperties",
+          "typeName": "map<string,string>",
+          "isOptional": true,
+          "cardinality": "SINGLE",
+          "valuesMinCount": 0,
+          "valuesMaxCount": 1,
+          "isUnique": false,
+          "isIndexable": false,
+          "includeInNotification": false
+        },
+        {
+          "name": "contentType",
+          "typeName": "string",
+          "isOptional": true,
+          "cardinality": "SINGLE",
+          "valuesMinCount": 0,
+          "valuesMaxCount": 1,
+          "isUnique": false,
+          "isIndexable": false,
+          "includeInNotification": false
+        },
+        {
+          "name": "ACL",
+          "typeName": "string",
+          "isOptional": true,
+          "cardinality": "SINGLE",
+          "valuesMinCount": 0,
+          "valuesMaxCount": 1,
+          "isUnique": false,
+          "isIndexable": false,
+          "includeInNotification": false
+        },
+        {
+          "name": "owner",
+          "typeName": "string",
+          "isOptional": true,
+          "cardinality": "SINGLE",
+          "valuesMinCount": 0,
+          "valuesMaxCount": 1,
+          "isUnique": false,
+          "isIndexable": false,
+          "includeInNotification": false
+        },
+        {
+          "name": "groups",
+          "typeName": "string",
+          "isOptional": true,
+          "cardinality": "SINGLE",
+          "valuesMinCount": 0,
+          "valuesMaxCount": 1,
+          "isUnique": false,
+          "isIndexable": false,
+          "includeInNotification": false
+        }
+      ],
+      "superTypes": [
+        "DataSet",
+        "azure_datalake_gen2_object"
+      ],
+      "subTypes": []
+    },
+    {
+      "category": "ENTITY",
+      "version": 1,
+      "name": "resource_set",
+      "description": "resource_set",
+      "typeVersion": "1.0",
+      "attributeDefs": [
+        {
+          "name": "columns",
+          "typeName": "array<column>",
+          "isOptional": true,
+          "cardinality": "SINGLE",
+          "valuesMinCount": 0,
+          "valuesMaxCount": 1,
+          "isUnique": false,
+          "isIndexable": false,
+          "includeInNotification": false
+        },
+        {
+          "name": "modifiedTime",
+          "typeName": "date",
+          "isOptional": true,
+          "cardinality": "SINGLE",
+          "valuesMinCount": 0,
+          "valuesMaxCount": 1,
+          "isUnique": false,
+          "isIndexable": false,
+          "includeInNotification": false
+        },
+        {
+          "name": "partitionCount",
+          "typeName": "long",
+          "isOptional": true,
+          "cardinality": "SINGLE",
+          "valuesMinCount": 0,
+          "valuesMaxCount": 1,
+          "isUnique": false,
+          "isIndexable": false,
+          "includeInNotification": false
+        },
+        {
+          "name": "schemaCount",
+          "typeName": "long",
+          "isOptional": true,
+          "cardinality": "SINGLE",
+          "valuesMinCount": 0,
+          "valuesMaxCount": 1,
+          "isUnique": false,
+          "isIndexable": false,
+          "includeInNotification": false
+        },
+        {
+          "name": "partitionTypes",
+          "typeName": "array<string>",
+          "isOptional": true,
+          "cardinality": "LIST",
+          "valuesMinCount": 0,
+          "valuesMaxCount": 2147483647,
+          "isUnique": false,
+          "isIndexable": false,
+          "includeInNotification": false
+        }
+      ],
+      "superTypes": [
+        "DataSet"
+      ]
+    },
+    {
+      "category": "ENTITY",
+      "version": 1,
+      "name": "azure_datalake_gen2_resource_set",
+      "description": "azure_datalake_gen2_resource_set",
+      "typeVersion": "1.0",
+      "attributeDefs": [],
+      "superTypes": [
+        "azure_datalake_gen2_object",
+        "resource_set"
+      ],
+      "subTypes": []
     }
   ],
   "relationshipDefs": []

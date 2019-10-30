@@ -1,12 +1,13 @@
+import os
 import pyodbc
 
 #################### Insert Information ######################
 
-SQL_SERVER = '<Insert SQL Server name>.database.windows.net'
-SQL_DB_NAME = '<Insert SQL DB name>'
-SQL_DW_NAME = '<Insert SQL DW name'
-USERNAME = '<Insert SQL Server Username>'
-PASSWORD = '<Insert SQL Server Password>'
+SQL_SERVER = os.environ['base_sql_server_name'] + '.database.windows.net'
+SQL_DB_NAME = os.environ['base_sql_database_name']
+SQL_DW_NAME = os.environ['base_sql_datawarehouse_name']
+USERNAME = os.environ['sql_username']
+PASSWORD = os.environ['sql_password']
 
 ##############################################################
 
