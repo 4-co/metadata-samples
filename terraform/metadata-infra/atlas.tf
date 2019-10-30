@@ -57,7 +57,9 @@ resource "null_resource" "atlas_entities" {
     provisioner "local-exec" {
       command = "curl ${local.curl_options} http://admin:admin@${azurerm_container_group.this.ip_address}:21000/api/atlas/v2/entity/bulk -d \"${local.entities}\""
     }
-
+  triggers = {
+    configuration = local.entities
+  } 
   depends_on = [azurerm_container_group.this]
 }
 

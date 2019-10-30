@@ -16,6 +16,17 @@
                 "principalId": 0
             },
             "guid": -2
+        },
+        {
+            "typeName": "azure_datalake_gen2_resource_set",
+            "attributes": {
+                "qualifiedName": "${storage}${container}/example_sales_folder",
+                "name": "example_sales_folder",
+                "rule_id": "test_id",
+                "rule_name": "test_name",
+                "type": "test_type"
+            },
+            "guid": -3
         }
     ],
     "referredEntities": {}
