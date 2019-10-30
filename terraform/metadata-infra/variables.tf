@@ -25,7 +25,7 @@ variable "base_sql_database_name" {
 }
 
 variable "base_sql_datawarehouse_name" {
-  description = "Name of the base database"
+  description = "Name of the base datawarehouse"
   type        = "string"
 }
 
