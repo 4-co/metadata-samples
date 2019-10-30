@@ -1,10 +1,11 @@
+import os
 from azure.storage.blob import BlockBlobService
 
 #################### Insert Information ######################
 
-ACCOUNT_NAME = "<Insert Storage Account Name>"
-ACCOUNT_KEY = "<Insert ADLS Primary Access Key>"
-CONTAINER_NAME = "<Insert ADLS Container Name>"
+ACCOUNT_NAME = os.environ['base_storage_account_name']
+ACCOUNT_KEY = os.environ['adls_primary_access_key']
+CONTAINER_NAME = os.environ['adls_container_name']
 
 ##############################################################
 
@@ -16,4 +17,3 @@ try:
 
 except Exception as error:
     print("Error:", error)
-

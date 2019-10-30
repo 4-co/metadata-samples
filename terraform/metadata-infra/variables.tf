@@ -113,14 +113,6 @@ variable "sql_dw_connection_string" {
 }
 
 variable "adls_container_name" {
- description = "Name of Azure Datalake Storage"
+ description = "Name of ADLS container"
  type = "string" 
-}
-
-variable "adls_primary_access_key" {
- type = "string" 
-}
-
-variable "adls_properties_url" {
-  type = "string"
 }
