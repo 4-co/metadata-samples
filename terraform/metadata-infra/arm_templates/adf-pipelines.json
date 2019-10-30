@@ -268,10 +268,10 @@
 								},
 								"SourceDataset": "SampleAdlsSource",
 								"SourceType": "azure_datalake_gen2_resource_set",
-                                "SourceAzureResource": "[concat(parameters('adls_properties_url'), '/', parameters('adls_container_name'), '/example_sales_folder')]",
+                                "SourceAzureResource": "[concat(parameters('adls_properties_url'), parameters('adls_container_name'), '/example_sales_folder')]",
 								"DestinationDataset": "salesadls",
 								"DestinationType": "azure_datalake_gen2_filesystem",
-                                "DestinationAzureResource": "[concat(parameters('adls_properties_url'), '/', parameters('adls_container_name'))]",
+                                "DestinationAzureResource": "[concat(parameters('adls_properties_url'), parameters('adls_container_name'))]",
 								"PipelineName": {
 									"value": "@pipeline().Pipeline",
 									"type": "Expression"
@@ -353,7 +353,7 @@
 								"SourceAzureResource": "[concat('https://', parameters('sql_server_name'), '.database.windows.net/', parameters('sql_dw_name'), '/exampletable')]",
 								"DestinationDataset": "salesadls",
 								"DestinationType": "azure_datalake_gen2_filesystem",
-								"DestinationAzureResource": "[concat(parameters('adls_properties_url'), '/', parameters('adls_container_name'))]",
+								"DestinationAzureResource": "[concat(parameters('adls_properties_url'), parameters('adls_container_name'))]",
 								"PipelineName": {
 									"value": "@pipeline().Pipeline",
 									"type": "Expression"

@@ -46,6 +46,10 @@ output "adls_container_name" {
   value = "${azurerm_storage_data_lake_gen2_filesystem.this.name}"
 }
 
+output "adls_primary_access_key" {
+  value = "${azurerm_storage_account.this.primary_access_key}"
+}
+
 output "sql_username" {
   value = "${var.sql_username}"
 }
