@@ -75,6 +75,11 @@ base_vnet_name = "base-infra-name-basevnet"
 base_user_assigned_identity_name = "base-infra-name-webapp"
 base_acr_name="base-infra-acr"
 base_keyvault_name="base-infra-keyvault"
+base_sql_database_name = "base-infra-name-base-db"
+base_sql_datawarehouse_name = "base-infra-name-base-dw"
+base_sql_server_name = "base-infra-name-base"
+sql_db_connection_string = "Server=tcp:base-infra-name-base.database.windows.net,1433;Initial Catalog=base-infra-name-base-db;Persist Security Info=False;User ID=testusername;Password=testPassw0rd!an;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+sql_dw_connection_string = "Server=tcp:base-infra-name-base.database.windows.net,1433;Initial Catalog=base-infra-name-base-dw;Persist Security Info=False;User ID=testusername;Password=testPassw0rd!an;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
 
 resource_group_name = "metadata-test" 
 location="eastus2"
@@ -82,7 +87,10 @@ databricks_name = "metadatabricks"
 atlas_dns_name = "metadatadns"
 data_factory_name = "metadatafactory"
 
+adls_container_name = "storage00000000"
+
 app_service_plan_name = "metadata-service-plan"
+
 ```
 
 You can easily access the `base_` information by running `terraform output` in the `base-infra` folder.
@@ -109,3 +117,9 @@ When prompted type `yes` to create the following resources:
 
 
 WebApp is wired up to run Dockerized Java application pushed to the ACR. It takes less than 10 minutes after image is pushed until webapp is up and running.
+
+### Post deployment steps
+
+When all infrastructure is deployed, please go to `base-infra/setup_scripts` folder and run `configure.sh` script. It will upload test data to ADLS and SQL.
+
+You can run `trigger_adf.py` script to trigger the data copy pipeline (please provide required environment variables `DATAFACTORY_RG_NAME` and `DATAFACTORY_NAME` with datafactory resource group name and resource name accordingly).
